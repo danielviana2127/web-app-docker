@@ -5,22 +5,29 @@ services:
     ports:
       - "8000:8000"
     environment:
+      APP_PORT: 8000
+      FLASK_DEBUG: "false"
       POSTGRES_DB: appdb
       POSTGRES_USER: appuser
       POSTGRES_PASSWORD: secret
       POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
     depends_on:
       - db
+    restart: unless-stopped
 
   db:
     image: postgres:16-alpine
-    container_name: db
+    container_name: postgres-db
     environment:
       POSTGRES_DB: appdb
       POSTGRES_USER: appuser
       POSTGRES_PASSWORD: secret
     volumes:
       - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
 
 volumes:
   db_data:
