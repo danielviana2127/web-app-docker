@@ -51,13 +51,14 @@ web-app-docker/
 ```bash
 git clone https://github.com/danielviana2127/web-app-docker.git
 cd web-app-docker
-docker compose up --build
+docker compose up -d --build
 ```
 
 A aplicação ficará disponível em:
 
 ```
 http://localhost:5000
+http://localhost:8000/health
 ```
 
 ---
